@@ -4,6 +4,6 @@ MAINTAINER Chu <root@sh3ll.me>
 
 RUN apt install git gdb build-essential && cd && git clone https://github.com/pwndbg/pwndbg \
 	&& cd pwndbg && sed 's/sudo //g' setup.sh > tmp && mv tmp setup.sh \
-	&& chmod +x setup.sh && ./setup.sh
+	&& chmod +x setup.sh && ./setup.sh \
 	&& apt-get clean && apt-get autoclean && apt-get -y --purge autoremove \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
