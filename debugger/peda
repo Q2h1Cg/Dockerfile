@@ -1,0 +1,11 @@
+FROM ubuntu
+
+MAINTAINER Chu <root@sh3ll.me>
+
+RUN apt-get update && apt-get -y install gdb git && \
+	cd && git clone https://github.com/longld/peda .peda && \
+	echo "source ~/.peda/peda.py" >> .gdbinit && \
+	echo "alias gdb='gdb -q'" >> .bashrc && \
+	apt-get -y remove git && \
+	apt-get clean && apt-get autoclean && apt-get -y --purge autoremove && \
+	rm -rf /var/lib/apt/lists/* /var/lib/cache/* /var/lib/log/* /tmp/* /var/tmp/*
