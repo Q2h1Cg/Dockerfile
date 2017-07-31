@@ -2,7 +2,9 @@ FROM ubuntu
 
 MAINTAINER Chu <root@sh3ll.me>
 
-ENV LANG en_US.UTF-8
+RUN locale-gen en_US.UTF-8
+
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 RUN apt update && apt install -y git gdb build-essential \
 	&& cd && git clone https://github.com/pwndbg/pwndbg \
