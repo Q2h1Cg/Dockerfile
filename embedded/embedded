@@ -1,12 +1,12 @@
-FROM ubuntu
+FROM debian
 
 MAINTAINER Chu <root@sh3ll.me>
 
 ENV LC_ALL en_US.UTF-8
 ENV PYTHONIOENCODING UTF-8
 
-RUN apt update && cd \
-	&& apt -y install tmux vim git gdb gdb-multiarch qemu -y \
+RUN dpkg --add-architecture i386 && apt update && cd \
+	&& apt -y install tmux vim git build-essential crossbuild-essential * libc6-dbg* gdb gdb-multiarch qemu -y \
 	&& ln -s `which gdb-multiarch` /usr/local/bin/gdb \
 	&& echo -e "\n#gdb\nalias gdb='gdb -q'" >> .bashrc \
 	&& git clone https://github.com/pwndbg/pwndbg .pwndbg \
