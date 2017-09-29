@@ -2,9 +2,14 @@ FROM ubuntu
 
 MAINTAINER Chu <root@sh3ll.me>
 
-RUN apt update \
-	&& apt install git gdb gdb-multiarch vim qemu -y \
+ENV LC_ALL en_US.UTF-8
+ENV PYTHONIOENCODING UTF-8
+
+RUN apt update && cd \
+	&& apt install tmux vim git gdb gdb-multiarch qemu -y \
 	&& ln -s `which gdb-multiarch` /usr/local/bin/gdb \
 	&& echo -e "\n#gdb\nalias gdb='gdb -q'" >> .bashrc \
-	&& apt-get clean && apt-get autoclean && apt-get -y --purge autoremove \
+	&& git clone https://github.com/pwndbg/pwndbg .pwndbg \
+	&& (cd .pwndbg && sed -ie 's/apt-get install/apt-get -y install/' setup.sh && ./setup.sh) \
+	&& apt clean && apt  autoclean && apt -y --purge autoremove \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
