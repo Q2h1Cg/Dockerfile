@@ -6,7 +6,7 @@ ENV LC_ALL en_US.UTF-8
 ENV PYTHONIOENCODING UTF-8
 
 RUN dpkg --add-architecture i386 && apt update && cd \
-	&& apt -y install python python-pip && pip install pwntools
+	&& apt -y install python python-pip && pip install pwntools \
 	&& apt -y install tmux vim git build-essential crossbuild-essential* libc6-dbg* gdb gdb-multiarch qemu -y \
 	&& ln -s `which gdb-multiarch` /usr/local/bin/gdb \
 	&& echo -e "\n#gdb\nalias gdb='gdb -q'" >> .bashrc \
