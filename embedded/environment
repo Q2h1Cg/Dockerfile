@@ -1,0 +1,8 @@
+FROM debian
+
+MAINTAINER Chu <root@sh3ll.me>
+
+RUN dpkg --add-architecture i386 && apt update && apt upgrade -y && cd \
+	&& apt install vim build-essential crossbuild-essential* libc6-dbg* gdb gdb-multiarch qemu -y \
+	&& apt clean && apt  autoclean && apt autoremove -y --purge \
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
