@@ -3,11 +3,8 @@ FROM ubuntu
 MAINTAINER Chu <root@sh3ll.me>
 
 RUN apt update \
-	&& apt install python-pip -y && pip install apt-select && apt-select -C CN -t 3 \
-	&& cp /etc/apt/sources.list /etc/apt/sources.list.backup && mv sources.list /etc/apt/ \
 	&& apt install git gdb gdb-multiarch vim qemu -y \
 	&& ln -s `which gdb-multiarch` /usr/local/bin/gdb \
-	&& cd && git clone https://github.com/pwndbg/pwndbg .pwndbg && (cd .pwndbg && ./setup.sh) \
 	&& echo -e "\n#gdb\nalias gdb='gdb -q'" >> .bashrc \
 	&& apt-get clean && apt-get autoclean && apt-get -y --purge autoremove \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
