@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+Usage() {
+	echo -e "Usage:\n\t$0 <encrypted-php-script>";
+	exit;
+}
+
+if [ $# -eq 1 ] && [ -f $1 ]; then
+	export HTTP_HOST='www.baidu.com'
+	export SERVER_ADDR='127.0.0.1'
+	export REMOTE_ADDR='127.0.0.1'
+
+	sed -e "s!your_file_here!$1!" /root/php-decrypt-eval.gdb > /tmp/tmp-php-decrypt-eval.gdb
+	gdb -q -x /tmp/tmp-php-decrypt-eval.gdb /root/php-5.6.31/sapi/cli/php
+else
+	Usage;
+fi
