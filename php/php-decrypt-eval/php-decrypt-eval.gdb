@@ -1,3 +1,5 @@
+source /root/php-5.6.31/.gdbinit
+
 b main
 commands
 silent
@@ -8,7 +10,6 @@ end
 b compile_string
 commands
 silent
-source /root/php-5.6.31/.gdbinit
 printf "--------------------------------------------------------------------------------\n"
 printf "callback:\n\n"
 zbacktrace
