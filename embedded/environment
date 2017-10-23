@@ -1,4 +1,4 @@
-FROM debian
+FROM ubuntu
 
 MAINTAINER Chu <root@sh3ll.me>
 
