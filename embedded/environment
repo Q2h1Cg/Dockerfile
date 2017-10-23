@@ -6,6 +6,8 @@ WORKDIR /root/
 
 RUN dpkg --add-architecture i386 && apt update \
 	&& apt install wget vim python python3 build-essential crossbuild-essential* libc6-dbg* gdb gdb-multiarch qemu git -y \
-	&& git clone https://github.com/devttys0/binwalk && (cd binwalk && python3 setup.py install && bash ./deps.sh --yes) && rm -rf binwalk \
-	&& apt clean && apt  autoclean && apt autoremove -y --purge \
+	&& git clone https://github.com/devttys0/binwalk && (cd binwalk && python3 setup.py install && bash ./deps.sh --yes) \
+	&& git clone https://github.com/devttys0/sasquatch && (cd sasquatch && bash ./build.sh && cd squashfs4.3/squashfs-tools && make && make install) \
+	&& rm -rf binwalk && rm -rf sasquatch \
+	&& apt clean && apt autoclean && apt autoremove -y --purge \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
